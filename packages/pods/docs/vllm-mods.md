@@ -20,7 +20,7 @@ So the "mods" are implemented as **deployment scripts + TypeScript configuration
 
 ## 2) Implementation map (files and responsibilities)
 
-## Core bootstrap and runtime scripts
+### Core bootstrap and runtime scripts
 
 - `packages/pods/scripts/pod_setup.sh`
   - Installs Python/uv/CUDA alignment and vLLM.
@@ -32,7 +32,7 @@ So the "mods" are implemented as **deployment scripts + TypeScript configuration
   - Builds final `vllm serve ...` command from placeholders and injected args.
   - Downloads model (`hf download`) and starts vLLM in a monitored process.
 
-## Config and orchestration in TypeScript
+### Config and orchestration in TypeScript
 
 - `packages/pods/src/models.json`
   - Source of truth for known model profiles.
@@ -47,7 +47,7 @@ So the "mods" are implemented as **deployment scripts + TypeScript configuration
   - Selects GPUs, applies model config, assembles vLLM args/env, uploads and executes launcher script.
   - Watches logs for success/failure patterns.
 
-## Reference docs that describe these behaviors
+### Reference docs that describe these behaviors
 
 - `packages/pods/README.md`
 - `packages/pods/docs/models.md`
@@ -240,4 +240,3 @@ The implementation gives three practical outcomes:
 - **Repeatability**: setup and launch are scripted, not ad hoc.
 - **Model-specific correctness**: parser/parallelism/env details live in curated profiles.
 - **Operational ergonomics**: users interact with `pi` commands instead of managing many low-level vLLM details manually.
-
